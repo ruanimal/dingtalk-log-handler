@@ -1,0 +1,5 @@
+include README.md
+recursive-include dingtalk_log_handler *
+global-exclude __pycache__
+global-exclude tmp
+global-exclude *.py[co]

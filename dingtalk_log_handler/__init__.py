@@ -15,6 +15,13 @@ import time
 import urllib.parse
 
 
+__author__ = 'ruan.lj'
+__version__ = '0.0.1'
+__all__ = (
+    'OAPI_DOMAIN',
+    'DingTalkHandler',
+)
+
 OAPI_DOMAIN = 'oapi.dingtalk.com'   # dingtalk open api domain
 
 class DingdingApiError(RuntimeError):

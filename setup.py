@@ -28,7 +28,6 @@ setup(
     ],
     packages=find_packages(),
     python_requires='>=3.5',
-    include_package_data=True,
     install_requires=[],
     project_urls={
         'Source': 'https://github.com/ruanima/dingtalk-log-handler',

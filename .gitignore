@@ -1,0 +1,4 @@
+dingtalk_log_handler.egg-info
+dist
+*.pyc
+*.pyo

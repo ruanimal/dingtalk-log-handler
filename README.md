@@ -4,6 +4,9 @@
 
 参考钉钉群机器人接口 https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq/26eaddd5
 
+## 安装
+pip install dingtalk-log-handler
+
 ## 打包
 python setup.py sdist
 

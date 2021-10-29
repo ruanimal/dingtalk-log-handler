@@ -12,11 +12,20 @@ LOGGING = {
     'handlers': {
         'dingtalk':{
             'class': 'dingtalk_log_handler.DingTalkHandler',
-            'webhook': 'https://oapi.dingtalk.com/robot/send?access_token=XXXXX',
+            'webhook': 'https://oapi.dingtalk.com/robot/send?access_token=xxx',
             # 'secret': '',
+            'keyword': 'alert',
+            'formatter':'verbose',
+            'level': 'ERROR',
+        },
+        'dingtalk_secret':{
+            'class': 'dingtalk_log_handler.DingTalkHandler',
+            'webhook': 'https://oapi.dingtalk.com/robot/send?access_token=xxx',
+            'secret': 'zzz',
             # 'keyword': '',
             'formatter':'verbose',
             'level': 'ERROR',
+            'cert_verify': False,
         },
         'console': {
             'level': 'INFO',
@@ -30,10 +39,16 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'secret': {
+            'handlers': ['dingtalk_secret', 'console'],
+            'level': 'INFO',
+            'propagate': False,
+        }
     }
 }
 
 logging.config.dictConfig(LOGGING)
 
 def test_message():
-    logging.error('testing')
+    logging.error('test keyword')
+    logging.getLogger('secret').error('test secret')

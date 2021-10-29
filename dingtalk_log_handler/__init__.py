@@ -10,13 +10,14 @@ import http.client
 import json
 import logging
 import logging.handlers
+import ssl
 import socket
 import time
 import urllib.parse
 
 
 __author__ = 'ruan.lj'
-__version__ = '0.0.3'
+__version__ = '0.0.5'
 __all__ = (
     'OAPI_DOMAIN',
     'DingTalkHandler',
@@ -30,7 +31,7 @@ class DingdingApiError(RuntimeError):
 class DingTalkHandler(logging.Handler):
     """Handler for logging message to dingtalk"""
 
-    def __init__(self, webhook, keyword='alarm', secret='', hostname='', timeout=1):
+    def __init__(self, webhook, keyword='alarm', secret='', hostname='', timeout=1, cert_verify=True):
         """
         args:
             webhook: webhook url for dingtalk open api
@@ -38,6 +39,7 @@ class DingTalkHandler(logging.Handler):
             secret: secret for dingtalk open api
             hostname: hostname for identify machine, default local ip address
             timeout: http request timeout, default 1 second
+            cert_verify: verify SSL certificates or not, default True
         """
 
         logging.Handler.__init__(self)
@@ -48,6 +50,7 @@ class DingTalkHandler(logging.Handler):
         self.secret = secret
         self.hostname = hostname if hostname else self.get_hostname()
         self.timeout = timeout
+        self.cert_verify = cert_verify
 
     @staticmethod
     def get_hostname():
@@ -80,7 +83,8 @@ class DingTalkHandler(logging.Handler):
             }
             body = json.dumps(data).encode('utf8')
             if 'https' in self.webhook:
-                h = http.client.HTTPSConnection(OAPI_DOMAIN, timeout=self.timeout)
+                context = None if self.cert_verify else ssl._create_unverified_context()
+                h = http.client.HTTPSConnection(OAPI_DOMAIN, timeout=self.timeout, context=context)
             else:
                 h = http.client.HTTPConnection(OAPI_DOMAIN, timeout=self.timeout)
             headers = dict([

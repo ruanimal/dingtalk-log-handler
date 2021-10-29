@@ -10,6 +10,14 @@ pip install dingtalk-log-handler
 ## 打包
 python setup.py sdist
 
+## 参数
+- webhook: webhook url for dingtalk open api
+- keyword: allowed message keyword, default 'alarm'
+- secret: secret for dingtalk open api
+- hostname: hostname for identify machine, default local ip address
+- timeout: http request timeout, default 1 second
+- cert_verify: verify SSL certificates or not, default True
+
 ## 使用示例
 ```python
 import logging

@@ -17,7 +17,7 @@ import urllib.parse
 
 
 __author__ = 'ruan.lj'
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 __all__ = (
     'OAPI_DOMAIN',
     'DingTalkHandler',

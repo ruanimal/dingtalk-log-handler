@@ -30,7 +30,7 @@ setup(
     python_requires='>=3.5',
     install_requires=[],
     project_urls={
-        'Source': 'https://github.com/ruanima/dingtalk-log-handler',
-        'Tracker': 'https://github.com/ruanima/dingtalk-log-handler/issues',
+        'Source': 'https://github.com/ruanimal/dingtalk-log-handler',
+        'Tracker': 'https://github.com/ruanimal/dingtalk-log-handler/issues',
     },
 )
